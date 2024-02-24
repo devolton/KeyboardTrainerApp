@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualBasic;
 using System.Diagnostics;
 using System.Text;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -10,12 +11,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using System.Xml.Linq;
 
 namespace KeyboardTrainerApp;
 
 public partial class MainWindow : Window
 {
+    private DispatcherTimer _timer;
     private int _charsCounter = 0;
     private Stopwatch _stopwatch;
     private string _fullText;
@@ -24,6 +27,7 @@ public partial class MainWindow : Window
     private Key _currentCharCode;
     private int _currentCharIndex = 0;
     private int _currentWordIndex = 0;
+    private int _missclickCounter = 0;
     private InlineCollection _currentInlineCollection;
     private Run _currentCharRun;
     private StringBuilder _sb;
@@ -37,7 +41,11 @@ public partial class MainWindow : Window
     {
         _stopwatch = new Stopwatch();
         _sb = new StringBuilder();
-        _fullText = "Hello world my name Antonio";
+        _timer = new();
+        _timer.Interval = TimeSpan.FromSeconds(1);
+        _timer.Tick += Timer_Tick;
+
+        _fullText = "Hello world my name Antonio Montana and I just wanna be big potato and two chickes and you wanna be my girlfriend";
         _wordsArray = Cut();
         _currentWord = _wordsArray[_currentWordIndex];
         _currentCharCode = (Key)_currentWord[_currentCharIndex] - 21;
@@ -49,7 +57,7 @@ public partial class MainWindow : Window
         }
         afterRun.Text = _sb.ToString();
         _sb.Clear();
-        _stopwatch.Start();
+        
 
 
     }
@@ -63,11 +71,18 @@ public partial class MainWindow : Window
             if (_currentWordIndex == _wordsArray.Length - 1)
             {
                 _stopwatch.Stop();
+                StartButton.FontSize = 18;
+                StartButton.Content = "Play again";
+                StartButton.IsEnabled = true;
+                _timer.Stop();
+                _missclickCounter = 0;
+                _charsCounter = 0;
                 var seconds=_stopwatch.Elapsed.Seconds;
-                MessageBox.Show(seconds.ToString());
                 var charsAtMinute = ((double)_charsCounter / (double)seconds) * 60;
                 MessageBox.Show("Game over! Speed: "+charsAtMinute.ToString("F2"));
+                _stopwatch.Stop();
                 _stopwatch.Reset();
+              
                 return;
             }
             _currentCharIndex = 0;
@@ -87,17 +102,23 @@ public partial class MainWindow : Window
 
     private void OnMainFormKeyDown(object sender, KeyEventArgs e)
     {
+        if (!StartButton.IsEnabled)
+        {
+            if (IsValidUpperKeyDown(e))
+                ChangeFocusChar();
 
-        if (IsValidUpperKeyDown(e))
-            ChangeFocusChar();
+            //не совсем коректно работает 
+            else if (IsValidLowerKeyDown(e))
+                ChangeFocusChar();
 
-        //не совсем коректно работает 
-        else if (IsValidLowerKeyDown(e))
-            ChangeFocusChar();
-
-        else
-            if (Keyboard.Modifiers != ModifierKeys.Shift && _isKeyDownHandlerActive)
-            _currentCharRun.Foreground = Brushes.Red;
+            else
+                if (Keyboard.Modifiers != ModifierKeys.Shift && _isKeyDownHandlerActive)
+            {
+                _currentCharRun.Foreground = Brushes.Red;
+                ++_missclickCounter;
+                MissclickCountLabel.Content = _missclickCounter.ToString();
+            }
+        }
 
     }
 
@@ -144,6 +165,12 @@ public partial class MainWindow : Window
 
 
     }
+    private void UpdatePrintSpeed()
+    {
+        var seconds = _stopwatch.Elapsed.Seconds;
+        var speed = ((double)_charsCounter / (double)seconds) * 60;
+        PrintSpeedLabel.Content = speed.ToString("F2") + " sb/min";
+    }
 
     private bool IsUpperChar(char ch) => ch >= 'A' && ch <= 'Z';
     private bool IsNotUpperChar(char ch) => !(ch >= 'A' && ch <= 'Z');
@@ -153,6 +180,27 @@ public partial class MainWindow : Window
 
     private string[] Cut() => _fullText.Split(new char[] { ' ', ',', '.', ';', ':', '-', '!', '?' }, StringSplitOptions.RemoveEmptyEntries);
 
+    private async void Timer_Tick(object sender, EventArgs e)
+    {
+        await UpdateTimeLabelAsync();
+    }
+    private async Task UpdateTimeLabelAsync()
+    {
+        string newData = _stopwatch.Elapsed.Seconds.ToString();
+        await Dispatcher.BeginInvoke(new Action(() =>
+        {
+            UpdatePrintSpeed();
+            TimeLabel.Content = newData;
+        }), DispatcherPriority.Normal);
+    }
 
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+        var button = sender as Button;
+        button.IsEnabled = false;
+        _timer.Start();
+        _stopwatch.Start();
+        WordsTextBox.IsEnabled = true;
 
+    }
 }

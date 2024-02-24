@@ -25,11 +25,39 @@
             Margin="25">
             <StackPanel>
                 <StackPanel
-                     Height="200">
+                     Height="200"
+                     Orientation="Horizontal">
+                    <StackPanel
+                        Height="200"
+                        Width="200">
+                        <Button
+                            Name="StartButton"
+                            Content="Play"
+                            Foreground="Firebrick"
+                            FontSize="22px"
+                            materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                            Background="{DynamicResource MaterialDesignDivider}"
+                            Height="50"
+                            Margin="40  40 40 40"
+                            Click="Button_Click"/>
+                        <Button
+                           Content="Change text"
+                            FontSize="16"
+                            Foreground="Firebrick"
+                            Background="{DynamicResource MaterialDesignChipBackground}"
+                            Height="50"
+                            Margin= "40 0 40 0"/>
+                    </StackPanel>
                     <TextBlock
-                     FontSize="18px"
-                     FontFamily="Georgia"
-                     Foreground="Gray">
+                        Name="WordsTextBox"
+                        Padding="10 30 10 10"
+                        Width="500"
+                        Height="200"
+                        FontSize="22px"
+                        FontFamily="Georgia"
+                        Foreground="Gray"
+                        TextWrapping="Wrap"
+                        IsEnabled="False">
                      <Run Name="prevRun"  Text=""/>
                        <InlineUIContainer>
                           <TextBlock
@@ -37,6 +65,64 @@
                         </InlineUIContainer>
                      <Run Name="afterRun" Text=""/>
                    </TextBlock>
+                    <StackPanel>
+                        <Grid Width="200">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                FontSize="22px"
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Content="Speed:"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Left"/>
+                            <Label
+                                Name="PrintSpeedLabel"
+                                FontSize="14px"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Content="0 sym/min"
+                                VerticalAlignment="Bottom"/>
+                            <Label
+                                FontSize="18px"
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Content="Miss count:"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Left"/>
+                            <Label
+                                Name="MissclickCountLabel"
+                                FontSize="18"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Content="0"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Center"/>
+                            <Label
+                                FontSize="18px"
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                Content="Time:"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Left"/>
+                            <Label
+                                Name="TimeLabel"
+                                FontSize="18"
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Center"
+                                Content="0"/>
+                        </Grid>
+                     
+                    </StackPanel>
                 </StackPanel>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -61,10 +147,26 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Border 
+                      Tag="Tab"
+                      BorderBrush="{DynamicResource MaterialDesignDivider}"
+                      BorderThickness="2"
+                      Grid.Column="0"
+                      Grid.Row="1"
+                      Margin="2">
+
+                        <Label
+                              FontSize="24px"
+                              Content="Tab"
+                              HorizontalContentAlignment="Center"
+                              VerticalContentAlignment="Center"/>
+                    </Border>
+                    <Border 
+                        Tag="Q"
                         BorderBrush="{DynamicResource MaterialDesignDivider}"
                         BorderThickness="2"
                         Grid.Column="1"
-                        Grid.Row="1">
+                        Grid.Row="1"
+                        Margin="2">
                         <Canvas>
                             <Label
                             FontSize="18px"
@@ -78,6 +180,262 @@
                             Canvas.Right="2"/>
                         </Canvas>
                     </Border>
+                    <Border
+                        BorderBrush="{DynamicResource MaterialDesignDivider}"
+                        BorderThickness="2"
+                        Grid.Column="2"
+                        Grid.Row="1"
+                        Margin="2">
+                        <Canvas>
+                            <Label
+                              FontSize="18px"
+                              Content="W"
+                              Canvas.Top="2"
+                              Canvas.Left="2"/>
+                            <Label
+                              FontSize="18px"
+                              Content="Ц"
+                              Canvas.Bottom="2"
+                              Canvas.Right="2"/>
+                        </Canvas>
+                    </Border>
+                    <Border
+                      BorderBrush="{DynamicResource MaterialDesignDivider}"
+                      BorderThickness="2"
+                      Grid.Column="4"
+                      Grid.Row="1"
+                      Margin="2">
+                        <Canvas>
+                            <Label
+                              FontSize="18px"
+                              Content="R"
+                              Canvas.Top="2"
+                              Canvas.Left="2"/>
+                            <Label
+                              FontSize="18px"
+                              Content="К"
+                              Canvas.Bottom="2"
+                              Canvas.Right="2"/>
+                        </Canvas>
+                    </Border>
+                    <Border 
+                     BorderBrush="{DynamicResource MaterialDesignDivider}"
+                     BorderThickness="2"
+                     Grid.Column="3"
+                     Grid.Row="1"
+                     Margin="2">
+                        <Canvas>
+                            <Label
+                              FontSize="18px"
+                              Content="E"
+                              Canvas.Top="2"
+                              Canvas.Left="2"/>
+                            <Label
+                              FontSize="18px"
+                              Content="У"
+                              Canvas.Bottom="2"
+                              Canvas.Right="2"/>
+                        </Canvas>
+                    </Border>
+                    <Border
+                      BorderBrush="{DynamicResource MaterialDesignDivider}"
+                      BorderThickness="2"
+                      Grid.Column="5"
+                      Grid.Row="1"
+                      Margin="2">
+                        <Canvas>
+                            <Label
+                              FontSize="18px"
+                              Content="T"
+                              Canvas.Top="2"
+                              Canvas.Left="2"/>
+                            <Label
+                              FontSize="18px"
+                              Content="Е"
+                              Canvas.Bottom="2"
+                              Canvas.Right="2"/>
+                        </Canvas>
+                    </Border>
+                    <Border
+                      BorderBrush="{DynamicResource MaterialDesignDivider}"
+                      BorderThickness="2"
+                      Grid.Column="6"
+                      Grid.Row="1"
+                      Margin="2">
+                        <Canvas>
+                            <Label
+                              FontSize="18px"
+                              Content="Y"
+                              Canvas.Top="2"
+                              Canvas.Left="2"/>
+                            <Label
+                              FontSize="18px"
+                              Content="Н"
+                              Canvas.Bottom="2"
+                              Canvas.Right="2"/>
+                        </Canvas>
+                    </Border>
+                    <Border
+                      BorderBrush="{DynamicResource MaterialDesignDivider}"
+                      BorderThickness="2"
+                      Grid.Column="7"
+                      Grid.Row="1"
+                      Margin="2">
+                        <Canvas>
+                            <Label
+                              FontSize="18px"
+                              Content="U"
+                              Canvas.Top="2"
+                              Canvas.Left="2"/>
+                            <Label
+                              FontSize="18px"
+                              Content="Г"
+                              Canvas.Bottom="2"
+                              Canvas.Right="2"/>
+                        </Canvas>
+                    </Border>
+                    <Border
+                      BorderBrush="{DynamicResource MaterialDesignDivider}"
+                      BorderThickness="2"
+                      Grid.Column="8"
+                      Grid.Row="1"
+                      Margin="2">
+                        <Canvas>
+                            <Label
+                              FontSize="18px"
+                              Content="I"
+                              Canvas.Top="2"
+                              Canvas.Left="2"/>
+                            <Label
+                              FontSize="18px"
+                              Content="Ш"
+                              Canvas.Bottom="2"
+                              Canvas.Right="2"/>
+                        </Canvas>
+                    </Border>
+                    <Border
+                      BorderBrush="{DynamicResource MaterialDesignDivider}"
+                      BorderThickness="2"
+                      Grid.Column="9"
+                      Grid.Row="1"
+                      Margin="2">
+                        <Canvas>
+                            <Label
+                              FontSize="18px"
+                              Content="O"
+                              Canvas.Top="2"
+                              Canvas.Left="2"/>
+                            <Label
+                              FontSize="18px"
+                              Content="Щ"
+                              Canvas.Bottom="2"
+                              Canvas.Right="2"/>
+                        </Canvas>
+                    </Border>
+                    <Border
+                      BorderBrush="{DynamicResource MaterialDesignDivider}"
+                      BorderThickness="2"
+                      Grid.Column="10"
+                      Grid.Row="1"
+                      Margin="2">
+                        <Canvas>
+                            <Label
+                              FontSize="18px"
+                              Content="P"
+                              Canvas.Top="2"
+                              Canvas.Left="2"/>
+                            <Label
+                             FontSize="18px"
+                             Content="З"
+                             Canvas.Bottom="2"
+                             Canvas.Right="2"/>
+                        </Canvas>
+                    </Border>
+                    <Border
+                      BorderBrush="{DynamicResource MaterialDesignDivider}"
+                      BorderThickness="2"
+                      Grid.Column="11"
+                      Grid.Row="1"
+                      Margin="2">
+                        <Canvas>
+                            <Label
+                              FontSize="18px"
+                              Content="'{"
+                              Canvas.Top="2"
+                              Canvas.Left="2"/>
+                            <Label
+                              FontSize="18px"
+                              Content="Х"
+                              Canvas.Bottom="2"
+                              Canvas.Right="2"/>
+                            <Label
+                              FontSize="18px"
+                              Content="["
+                              Canvas.Bottom="2"
+                              Canvas.Left="2"/>
+                        </Canvas>
+                    </Border>
+                    <Border
+                      BorderBrush="{DynamicResource MaterialDesignDivider}"
+                      BorderThickness="2"
+                      Grid.Column="12"
+                      Grid.Row="1"
+                      Margin="2">
+                        <Canvas>
+                            <Label
+                              FontSize="18px"
+                              Content="'}"
+                              Canvas.Top="2"
+                              Canvas.Left="2"/>
+                            <Label
+                              FontSize="18px"
+                              Content="Ъ"
+                              Canvas.Bottom="2"
+                              Canvas.Right="2"/>
+                            <Label
+                              FontSize="18px"
+                              Content="]"
+                              Canvas.Bottom="2"
+                              Canvas.Left="2"/>
+                        </Canvas>
+                    </Border>
+                    <Border
+                      BorderBrush="{DynamicResource MaterialDesignDivider}"
+                      BorderThickness="2"
+                      Grid.Column="0"
+                      Grid.Row="2"
+                      Margin="2">
+                        <Label
+                            FontSize="20"
+                            Content="CAPS"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"/>
+                    </Border>
+                    <Border
+                      BorderBrush="{DynamicResource MaterialDesignDivider}"
+                      BorderThickness="2"
+                      Grid.Column="12"
+                      Grid.Row="1"
+                      Margin="2">
+                        <Canvas>
+                            <Label
+                              FontSize="18px"
+                              Content="'}"
+                              Canvas.Top="2"
+                              Canvas.Left="2"/>
+                            <Label
+                              FontSize="18px"
+                              Content="Ъ"
+                              Canvas.Bottom="2"
+                              Canvas.Right="2"/>
+                        </Canvas>
+                    </Border>
+
+
+
+
+
+
                 </Grid>
             </StackPanel>
         </materialDesign:DialogHost>
