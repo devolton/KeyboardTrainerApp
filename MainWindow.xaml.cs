@@ -1,5 +1,7 @@
 ﻿using Microsoft.VisualBasic;
+using Microsoft.Xaml.Behaviors.Media;
 using System.Diagnostics;
+using System.Net.Mail;
 using System.Text;
 using System.Timers;
 using System.Windows;
@@ -57,7 +59,7 @@ public partial class MainWindow : Window
         }
         afterRun.Text = _sb.ToString();
         _sb.Clear();
-        
+
 
 
     }
@@ -75,14 +77,15 @@ public partial class MainWindow : Window
                 StartButton.Content = "Play again";
                 StartButton.IsEnabled = true;
                 _timer.Stop();
-                _missclickCounter = 0;
-                _charsCounter = 0;
-                var seconds=_stopwatch.Elapsed.Seconds;
+                var seconds = _stopwatch.Elapsed.Seconds;
                 var charsAtMinute = ((double)_charsCounter / (double)seconds) * 60;
-                MessageBox.Show("Game over! Speed: "+charsAtMinute.ToString("F2"));
+                MessageBox.Show("Game over! Speed: " + charsAtMinute.ToString("F2"));
                 _stopwatch.Stop();
                 _stopwatch.Reset();
-              
+                _missclickCounter = 0;
+                _charsCounter = 0;
+                _currentCharIndex = 0;
+                _currentWordIndex = 0;
                 return;
             }
             _currentCharIndex = 0;
@@ -122,7 +125,7 @@ public partial class MainWindow : Window
 
     }
 
- 
+
     private void DrawCharsRun()
     {
         for (int i = 0; i < _currentWord.Length; i++)
@@ -133,8 +136,8 @@ public partial class MainWindow : Window
             if (i == 0) _currentCharRun = newRunElement;
         }
 
-        
-            focusWordTextBlock.Inlines.Add(new Run(" "));
+
+        focusWordTextBlock.Inlines.Add(new Run(" "));
 
     }
     private void UpdateWord()
@@ -151,10 +154,7 @@ public partial class MainWindow : Window
 
     private void AddWordToPrevRunBlock(string word)
     {
-        if (_currentWordIndex == 0)
-            prevRun.Text += (" " + word);
-        else
-            prevRun.Text += " "+word;
+        prevRun.Text += " " + word;
     }
     private void CutWordFromAfterRunBlock(string word)
     {
@@ -202,5 +202,16 @@ public partial class MainWindow : Window
         _stopwatch.Start();
         WordsTextBox.IsEnabled = true;
 
+    }
+
+    private void ExitButton_Click(object sender, RoutedEventArgs e)
+    {
+        Application.Current.Shutdown();
+
+    }
+
+    private void ChangeThemeButton_Click(object sender, RoutedEventArgs e)
+    {
+        MainCard.SetResourceReference(Control.BackgroundProperty, "MainThemeBackground");
     }
 }
