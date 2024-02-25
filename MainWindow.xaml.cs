@@ -39,30 +39,7 @@ public partial class MainWindow : Window
         InitializeComponent();
 
     }
-    private void Window_Loaded(object sender, RoutedEventArgs e)
-    {
-        _stopwatch = new Stopwatch();
-        _sb = new StringBuilder();
-        _timer = new();
-        _timer.Interval = TimeSpan.FromSeconds(1);
-        _timer.Tick += Timer_Tick;
 
-        _fullText = "Hello world my name Antonio Montana and I just wanna be big potato and two chickes and you wanna be my girlfriend";
-        _wordsArray = Cut();
-        _currentWord = _wordsArray[_currentWordIndex];
-        _currentCharCode = (Key)_currentWord[_currentCharIndex] - 21;
-        DrawCharsRun();
-
-        for (int i = 1; i < _wordsArray.Length; i++)
-        {
-            _sb.Append(_wordsArray[i] + " ");
-        }
-        afterRun.Text = _sb.ToString();
-        _sb.Clear();
-
-
-
-    }
     public void ChangeFocusChar()
     {
         _currentInlineCollection = focusWordTextBlock.Inlines;
@@ -77,15 +54,7 @@ public partial class MainWindow : Window
                 StartButton.Content = "Play again";
                 StartButton.IsEnabled = true;
                 _timer.Stop();
-                var seconds = _stopwatch.Elapsed.Seconds;
-                var charsAtMinute = ((double)_charsCounter / (double)seconds) * 60;
-                MessageBox.Show("Game over! Speed: " + charsAtMinute.ToString("F2"));
-                _stopwatch.Stop();
-                _stopwatch.Reset();
-                _missclickCounter = 0;
-                _charsCounter = 0;
-                _currentCharIndex = 0;
-                _currentWordIndex = 0;
+                _stopwatch.Reset(); 
                 return;
             }
             _currentCharIndex = 0;
@@ -103,6 +72,107 @@ public partial class MainWindow : Window
 
 
 
+
+    private void DrawCharsRun()
+    {
+        for (int i = 0; i < _currentWord.Length; i++)
+        {
+            var newRunElement = new Run(_currentWord[i].ToString());
+            focusWordTextBlock.Inlines.Add(newRunElement);
+            newRunElement.Foreground = (i == 0) ? Brushes.LightGreen : Brushes.Gray;
+            if (i == 0) _currentCharRun = newRunElement;
+        }
+
+
+        focusWordTextBlock.Inlines.Add(new Run(" "));
+
+    }
+    private void UpdateWord()
+    {
+        focusWordTextBlock.Inlines.Clear();
+        AddWordToPrevRunBlock(_currentWord + " ");
+        _currentWord =_wordsArray[++_currentWordIndex];
+        _currentCharCode = (_currentWord[_currentCharIndex] < 'a') ? (Key)_currentWord[_currentCharIndex] - 21 : (Key)_currentWord[_currentCharIndex] - 53;
+        DrawCharsRun();
+        CutWordFromAfterRunBlock(_currentWord);
+
+    }
+
+    private void AddWordToPrevRunBlock(string word)
+    {
+        prevRun.Text += " " + word;
+    }
+    private void CutWordFromAfterRunBlock(string word)
+    {
+        _sb.Append(afterRun.Text);
+        var newAfterStr = _sb.Remove(0, word.Length + 1).ToString();
+        afterRun.Text = newAfterStr;
+        _sb.Clear();
+
+    }
+    private void UpdatePrintSpeed()
+    {
+        var seconds = _stopwatch.Elapsed.Seconds;
+        var speed = ((double)_charsCounter / (double)seconds) * 60;
+        PrintSpeedLabel.Content = speed.ToString("F2") + " sb/min";
+    }
+
+    private bool IsUpperChar(char ch) => ch >= 'A' && ch <= 'Z';
+    private bool IsNotUpperChar(char ch) => !(ch >= 'A' && ch <= 'Z');
+
+    private bool IsValidUpperKeyDown(KeyEventArgs e) => _isKeyDownHandlerActive && IsUpperChar(_currentCharRun.Text[0]) && e.Key == _currentCharCode && (Keyboard.Modifiers == ModifierKeys.Shift || Keyboard.IsKeyToggled(Key.CapsLock));
+    private bool IsValidLowerKeyDown(KeyEventArgs e) => _isKeyDownHandlerActive && IsNotUpperChar(_currentCharRun.Text[0]) && e.Key == _currentCharCode && (!Keyboard.IsKeyDown(Key.LeftShift) || !Keyboard.IsKeyToggled(Key.CapsLock));
+
+    private string[] Cut() => _fullText.Split(new char[] { ' ', ',', '.', ';', ':', '-', '!', '?' }, StringSplitOptions.RemoveEmptyEntries);
+
+    private async Task UpdateTimeLabelAsync()
+    {
+        string newData = _stopwatch.Elapsed.Seconds.ToString();
+        await Dispatcher.BeginInvoke(new Action(() =>
+        {
+            UpdatePrintSpeed();
+            TimeLabel.Content = newData;
+        }), DispatcherPriority.Normal);
+    }
+
+    private void UpdateGameData()
+    {
+        prevRun.Text = String.Empty;
+        _fullText = "Hello think it wanna be some interesting and I know you must doing this";
+        _wordsArray = Cut();
+        _missclickCounter = 0;
+        _charsCounter = 0;
+        _currentCharIndex = 0;
+        _currentWordIndex = 0;
+        MissclickCountLabel.Content = _missclickCounter.ToString();
+        TimeLabel.Content = _stopwatch.Elapsed.Seconds.ToString();
+        _currentWord = _wordsArray[_currentWordIndex];
+        _currentCharCode = (Key)_currentWord[_currentCharIndex] - 21;
+        focusWordTextBlock.Inlines.Clear();
+        DrawCharsRun();
+        FillAfterRunBlock();
+
+    }
+    private void FillAfterRunBlock()
+    {
+        for (int i = 1; i < _wordsArray.Length; i++)
+        {
+            _sb.Append(_wordsArray[i] + " ");
+        }
+        afterRun.Text = _sb.ToString();
+        _sb.Clear();
+    }
+
+    //Event Handler Block
+    private void Window_Loaded(object sender, RoutedEventArgs e)
+    {
+        _stopwatch = new Stopwatch();
+        _sb = new StringBuilder();
+        _timer = new();
+        _timer.Interval = TimeSpan.FromSeconds(1);
+        _timer.Tick += Timer_Tick;
+
+    }
     private void OnMainFormKeyDown(object sender, KeyEventArgs e)
     {
         if (!StartButton.IsEnabled)
@@ -125,82 +195,15 @@ public partial class MainWindow : Window
 
     }
 
-
-    private void DrawCharsRun()
-    {
-        for (int i = 0; i < _currentWord.Length; i++)
-        {
-            var newRunElement = new Run(_currentWord[i].ToString());
-            focusWordTextBlock.Inlines.Add(newRunElement);
-            newRunElement.Foreground = (i == 0) ? Brushes.LightGreen : Brushes.Gray;
-            if (i == 0) _currentCharRun = newRunElement;
-        }
-
-
-        focusWordTextBlock.Inlines.Add(new Run(" "));
-
-    }
-    private void UpdateWord()
-    {
-
-        focusWordTextBlock.Inlines.Clear();
-        AddWordToPrevRunBlock(_currentWord + " ");
-        _currentWord = _wordsArray[++_currentWordIndex];
-        _currentCharCode = (_currentWord[_currentCharIndex] < 'a') ? (Key)_currentWord[_currentCharIndex] - 21 : (Key)_currentWord[_currentCharIndex] - 53;
-        DrawCharsRun();
-        CutWordFromAfterRunBlock(_currentWord);
-
-    }
-
-    private void AddWordToPrevRunBlock(string word)
-    {
-        prevRun.Text += " " + word;
-    }
-    private void CutWordFromAfterRunBlock(string word)
-    {
-        _sb.Append(afterRun.Text);
-        var newAfterStr = _sb.Remove(0, word.Length + 1).ToString();
-        afterRun.Text = newAfterStr;
-        _sb.Clear();
-
-
-    }
-    private void UpdatePrintSpeed()
-    {
-        var seconds = _stopwatch.Elapsed.Seconds;
-        var speed = ((double)_charsCounter / (double)seconds) * 60;
-        PrintSpeedLabel.Content = speed.ToString("F2") + " sb/min";
-    }
-
-    private bool IsUpperChar(char ch) => ch >= 'A' && ch <= 'Z';
-    private bool IsNotUpperChar(char ch) => !(ch >= 'A' && ch <= 'Z');
-
-    private bool IsValidUpperKeyDown(KeyEventArgs e) => _isKeyDownHandlerActive && IsUpperChar(_currentCharRun.Text[0]) && e.Key == _currentCharCode && (Keyboard.Modifiers == ModifierKeys.Shift || Keyboard.IsKeyToggled(Key.CapsLock));
-    private bool IsValidLowerKeyDown(KeyEventArgs e) => _isKeyDownHandlerActive && IsNotUpperChar(_currentCharRun.Text[0]) && e.Key == _currentCharCode && (!Keyboard.IsKeyDown(Key.LeftShift) || !Keyboard.IsKeyToggled(Key.CapsLock));
-
-    private string[] Cut() => _fullText.Split(new char[] { ' ', ',', '.', ';', ':', '-', '!', '?' }, StringSplitOptions.RemoveEmptyEntries);
-
-    private async void Timer_Tick(object sender, EventArgs e)
-    {
-        await UpdateTimeLabelAsync();
-    }
-    private async Task UpdateTimeLabelAsync()
-    {
-        string newData = _stopwatch.Elapsed.Seconds.ToString();
-        await Dispatcher.BeginInvoke(new Action(() =>
-        {
-            UpdatePrintSpeed();
-            TimeLabel.Content = newData;
-        }), DispatcherPriority.Normal);
-    }
-
     private void Button_Click(object sender, RoutedEventArgs e)
     {
+        UpdateGameData();
         var button = sender as Button;
         button.IsEnabled = false;
         _timer.Start();
         _stopwatch.Start();
         WordsTextBox.IsEnabled = true;
+
 
     }
 
@@ -213,5 +216,10 @@ public partial class MainWindow : Window
     private void ChangeThemeButton_Click(object sender, RoutedEventArgs e)
     {
         MainCard.SetResourceReference(Control.BackgroundProperty, "MainThemeBackground");
+    }
+
+    private async void Timer_Tick(object sender, EventArgs e)
+    {
+        await UpdateTimeLabelAsync();
     }
 }

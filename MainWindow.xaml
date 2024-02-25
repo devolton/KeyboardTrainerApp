@@ -26,8 +26,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         materialDesign:ShadowAssist.ShadowDepth="Depth4">
         <materialDesign:DialogHost 
-            Margin="25"
-            Foreground="AliceBlue">
+            Margin="25">
             <StackPanel>
                 <StackPanel
                      Height="200"
