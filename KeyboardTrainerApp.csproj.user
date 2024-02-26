@@ -7,6 +7,32 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="CustomControls\DoubleKeyboardItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="CustomControls\QuadrupleKeyboardItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="CustomControls\SingleKeyboardItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="CustomControls\TripleKeyboardItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="CustomControls\DoubleKeyboardItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="CustomControls\QuadrupleKeyboardItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="CustomControls\SingleKeyboardItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="CustomControls\TripleKeyboardItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

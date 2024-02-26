@@ -222,4 +222,11 @@ public partial class MainWindow : Window
     {
         await UpdateTimeLabelAsync();
     }
+
+    private void DoubleKeyboardItem_GiveFeedback(object sender, GiveFeedbackEventArgs e)
+    {
+
+    }
+
+   
 }
