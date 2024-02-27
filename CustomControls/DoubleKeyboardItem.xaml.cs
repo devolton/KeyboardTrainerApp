@@ -20,14 +20,17 @@ namespace KeyboardTrainerApp
     /// </summary>
     public partial class DoubleKeyboardItem : UserControl
     {
+        //унаследовать от абстрактного класса CustomKeyboardItem
         public string TopLeftContent { get; set; }
         public string BottomRightContent { get; set; }
         public SolidColorBrush BackColor {  get; set; }
+        public double OpacityValue { get; set; }
         
         public DoubleKeyboardItem()
         {
             InitializeComponent();
             DataContext = this;
+            OpacityValue = 0.7;
         }
     }
 }

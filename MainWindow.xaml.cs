@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -27,6 +28,7 @@ public partial class MainWindow : Window
     private string[] _wordsArray;
     private string _currentWord;
     private Key _currentCharCode;
+    private char _incorrectPressedChar;
     private int _currentCharIndex = 0;
     private int _currentWordIndex = 0;
     private int _missclickCounter = 0;
@@ -34,6 +36,8 @@ public partial class MainWindow : Window
     private Run _currentCharRun;
     private StringBuilder _sb;
     private bool _isKeyDownHandlerActive = true;
+    private List<UserControl> _keyboardCollection;
+
     public MainWindow()
     {
         InitializeComponent();
@@ -54,7 +58,7 @@ public partial class MainWindow : Window
                 StartButton.Content = "Play again";
                 StartButton.IsEnabled = true;
                 _timer.Stop();
-                _stopwatch.Reset(); 
+                _stopwatch.Reset();
                 return;
             }
             _currentCharIndex = 0;
@@ -91,7 +95,7 @@ public partial class MainWindow : Window
     {
         focusWordTextBlock.Inlines.Clear();
         AddWordToPrevRunBlock(_currentWord + " ");
-        _currentWord =_wordsArray[++_currentWordIndex];
+        _currentWord = _wordsArray[++_currentWordIndex];
         _currentCharCode = (_currentWord[_currentCharIndex] < 'a') ? (Key)_currentWord[_currentCharIndex] - 21 : (Key)_currentWord[_currentCharIndex] - 53;
         DrawCharsRun();
         CutWordFromAfterRunBlock(_currentWord);
@@ -163,6 +167,61 @@ public partial class MainWindow : Window
         _sb.Clear();
     }
 
+    private void AddBoxShadowForFocusKey(char currentChar)
+    {
+        string curChar = Convert.ToString(currentChar).ToUpper();
+        if (_keyboardCollection.Any(oneKey => (string)oneKey?.Tag == curChar))
+        {
+            var focusElement = _keyboardCollection.First(oneKeyboardElement => (string)oneKeyboardElement?.Tag == curChar);
+            if (focusElement is DoubleKeyboardItem)
+            {
+                var item = focusElement as DoubleKeyboardItem;
+                item.OpacityValue = 1;
+            }
+            focusElement.Effect = new DropShadowEffect()
+            {
+                ShadowDepth = 5,
+                Color = Colors.Black,
+                Opacity = 0.7,
+                Direction = 200
+
+            };
+
+        }
+    }
+    private void RemoveBoxShadowForLostFocusKey(char lostFocusChar)
+    {
+        string lostFocusCharStr = Convert.ToString(lostFocusChar).ToUpper();
+        if (_keyboardCollection.Any(oneKey => (string)oneKey?.Tag == lostFocusCharStr))
+        {
+            _keyboardCollection.First(oneKey => (string)oneKey?.Tag == lostFocusCharStr).Effect = null;
+        }
+
+    }
+    private void AddIncorrectlyPressedEffect()
+    {
+        string incorrectCharStr = Convert.ToString(_incorrectPressedChar).ToUpper();
+        if (_keyboardCollection.Any(oneKey => (string)oneKey?.Tag == incorrectCharStr))
+        {
+           var element= _keyboardCollection.First(oneKey => (string)oneKey?.Tag == incorrectCharStr);
+            element.Background = Brushes.Red;
+            element.Foreground = Brushes.White;
+
+        }
+    }
+    private void RemoveIncorrectlyPressedEffect()
+    {
+        string incorrectCharStr = Convert.ToString(_incorrectPressedChar).ToUpper();
+        if (_keyboardCollection.Any(oneKey => (string)oneKey?.Tag == incorrectCharStr))
+        {
+            MessageBox.Show("I remover incorrect pressed effect!");
+            var element = _keyboardCollection.First(oneKey => (string)oneKey?.Tag == incorrectCharStr);
+            element.Background = null;
+          
+
+        }
+    }
+
     //Event Handler Block
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
@@ -171,6 +230,7 @@ public partial class MainWindow : Window
         _timer = new();
         _timer.Interval = TimeSpan.FromSeconds(1);
         _timer.Tick += Timer_Tick;
+        _keyboardCollection = KeyboardGrid.Children.OfType<UserControl>().ToList();
 
     }
     private void OnMainFormKeyDown(object sender, KeyEventArgs e)
@@ -178,11 +238,31 @@ public partial class MainWindow : Window
         if (!StartButton.IsEnabled)
         {
             if (IsValidUpperKeyDown(e))
+            {
+                if (_currentCharIndex != _currentWord.Length)
+                    RemoveBoxShadowForLostFocusKey(_currentWord[_currentCharIndex]);
                 ChangeFocusChar();
+                if (_currentCharIndex != _currentWord.Length)
+                    AddBoxShadowForFocusKey(_currentWord[_currentCharIndex]);
+            }
 
             //не совсем коректно работает 
             else if (IsValidLowerKeyDown(e))
+            {
+                if (_currentCharIndex != _currentWord.Length)
+                {
+                    
+                    RemoveBoxShadowForLostFocusKey(_currentWord[_currentCharIndex]);
+                    
+                }
+
                 ChangeFocusChar();
+                if (_currentCharIndex != _currentWord.Length)
+                {
+
+                    AddBoxShadowForFocusKey(_currentWord[_currentCharIndex]);
+                }
+            }
 
             else
                 if (Keyboard.Modifiers != ModifierKeys.Shift && _isKeyDownHandlerActive)
@@ -190,6 +270,9 @@ public partial class MainWindow : Window
                 _currentCharRun.Foreground = Brushes.Red;
                 ++_missclickCounter;
                 MissclickCountLabel.Content = _missclickCounter.ToString();
+                RemoveIncorrectlyPressedEffect();
+                _incorrectPressedChar = (char)(e.Key + 21);
+                AddIncorrectlyPressedEffect();
             }
         }
 
@@ -215,7 +298,7 @@ public partial class MainWindow : Window
 
     private void ChangeThemeButton_Click(object sender, RoutedEventArgs e)
     {
-        MainCard.SetResourceReference(Control.BackgroundProperty, "MainThemeBackground");
+        MainCard.SetResourceReference(BackgroundProperty, "MainThemeBackground");
     }
 
     private async void Timer_Tick(object sender, EventArgs e)
@@ -223,10 +306,8 @@ public partial class MainWindow : Window
         await UpdateTimeLabelAsync();
     }
 
-    private void DoubleKeyboardItem_GiveFeedback(object sender, GiveFeedbackEventArgs e)
-    {
 
-    }
 
-   
+
+
 }

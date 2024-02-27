@@ -11,9 +11,11 @@
         <Border
           BorderBrush="{DynamicResource MaterialDesignDivider}"
           BorderThickness="2"
-          Margin="2">
+          Margin="2"
+            Opacity="{Binding OpacityValue}">
             <Canvas
-                Background="{Binding BackColor}">
+                Background="{Binding BackColor}"
+                >
                 <Label
                     FontSize="18px"
                     Content="{Binding TopLeftContent}"
@@ -24,6 +26,7 @@
                     Content="{Binding BottomRightContent}"
                     Canvas.Right="2"
                     Canvas.Bottom="2" />
+
             </Canvas>
         </Border>
     </Grid>

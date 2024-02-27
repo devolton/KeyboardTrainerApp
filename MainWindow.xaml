@@ -148,7 +148,8 @@
                         </StackPanel>
                     </materialDesign:PopupBox>
                 </StackPanel>
-                <Grid>
+                <Grid
+                    x:Name="KeyboardGrid">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="70"/>
                         <RowDefinition Height="70"/>
@@ -228,6 +229,7 @@
                         TopLeftContent="&amp;"
                         BottomLeftContent="?"
                         BottomRightContent="7"
+                        Tag="7"
                         BackColor="CadetBlue"
                         Grid.Row="0"
                         Grid.Column="7"/>
