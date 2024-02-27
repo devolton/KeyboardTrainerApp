@@ -10,7 +10,8 @@
         <Border
             BorderBrush="{DynamicResource MaterialDesignDivider}"
             BorderThickness="2"
-            Margin="2">
+            Margin="2"
+            Opacity="{Binding OpacityValue}">
             <Canvas
                 Background="{Binding BackColor}">
                 <Label

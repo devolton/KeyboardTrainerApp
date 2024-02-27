@@ -18,18 +18,20 @@ namespace KeyboardTrainerApp.CustomControls
     /// <summary>
     /// Логика взаимодействия для QuadrupleKeyboardItem.xaml
     /// </summary>
-    public partial class QuadrupleKeyboardItem : UserControl
+    public partial class QuadrupleKeyboardItem : UserControl,IKeyboardItem
     {
         public string TopLeftContent { get; set; }
         public string TopRightContent { get; set; }
         public string BottomLeftContent { get; set; } 
         public string BottomRightContent { get; set; }
         public SolidColorBrush BackColor { get; set; }
+        public double OpacityValue { get; set; }
 
         public QuadrupleKeyboardItem()
         {
             InitializeComponent();
             DataContext = this;
+            OpacityValue = 0.7;
 
         }
     }

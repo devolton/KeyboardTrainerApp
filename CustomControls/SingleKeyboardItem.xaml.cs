@@ -18,15 +18,17 @@ namespace KeyboardTrainerApp.CustomControls
     /// <summary>
     /// Логика взаимодействия для SingleKeyboardItem.xaml
     /// </summary>
-    public partial class SingleKeyboardItem : UserControl
+    public partial class SingleKeyboardItem : UserControl, IKeyboardItem
     {
         public string MainContent { get; set; }
         public SolidColorBrush BackColor { get; set; }
-        
+        public double OpacityValue { get; set; }
+
         public SingleKeyboardItem()
         {
             InitializeComponent();
             DataContext = this;
+            OpacityValue = 0.7;
         }
     }
 }

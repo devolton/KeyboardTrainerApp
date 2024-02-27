@@ -1,6 +1,8 @@
-﻿using System;
+﻿using KeyboardTrainerApp.CustomControls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization.Formatters;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,7 +20,7 @@ namespace KeyboardTrainerApp
     /// <summary>
     /// Логика взаимодействия для DoubleKeyboardItem.xaml
     /// </summary>
-    public partial class DoubleKeyboardItem : UserControl
+    public partial class DoubleKeyboardItem : UserControl,IKeyboardItem
     {
         //унаследовать от абстрактного класса CustomKeyboardItem
         public string TopLeftContent { get; set; }

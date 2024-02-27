@@ -8,9 +8,10 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Border
-    BorderBrush="{DynamicResource MaterialDesignDivider}"
-    BorderThickness="2"
-    Margin="2">
+            BorderBrush="{DynamicResource MaterialDesignDivider}"
+            BorderThickness="2"
+            Margin="2"
+            Opacity="{Binding OpacityValue}">
             <Canvas
             Background="{Binding BackColor}">
                 <Label

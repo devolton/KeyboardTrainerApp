@@ -11,7 +11,8 @@
             Tag="Tab"
             BorderBrush="{DynamicResource MaterialDesignDivider}"
             BorderThickness="2"
-            Margin="2">
+            Margin="2"
+            Opacity="{Binding OpacityValue}">
 
             <Label
                 Background="{Binding BackColor}"

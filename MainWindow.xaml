@@ -20,6 +20,7 @@
         Loaded="Window_Loaded">
     <Window.Resources>
         <SolidColorBrush x:Key="MainThemeBackground" Color="{DynamicResource Primary100}"/>
+        <SolidColorBrush x:Key="IncorrectPushedBackground" Color="DarkRed"/>
     </Window.Resources>
     <materialDesign:Card
         x:Name="MainCard"
@@ -464,6 +465,7 @@
 
                     <uc:SingleKeyboardItem 
                         MainContent="SHIFT"
+                        Tag="Shift"
                         BackColor="IndianRed"
                         Grid.Row="3"
                         Grid.Column="0"
@@ -545,6 +547,7 @@
                     <uc:SingleKeyboardItem
                         MainContent="Shift"
                         BackColor="Bisque"
+                        Tag="Shift"
                         Grid.Column="13"
                         Grid.Row="3"/>
 

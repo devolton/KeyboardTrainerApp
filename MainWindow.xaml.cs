@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic;
+﻿using KeyboardTrainerApp.CustomControls;
+using Microsoft.VisualBasic;
 using Microsoft.Xaml.Behaviors.Media;
 using System.Diagnostics;
 using System.Net.Mail;
@@ -9,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup.Localizer;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
@@ -173,9 +175,9 @@ public partial class MainWindow : Window
         if (_keyboardCollection.Any(oneKey => (string)oneKey?.Tag == curChar))
         {
             var focusElement = _keyboardCollection.First(oneKeyboardElement => (string)oneKeyboardElement?.Tag == curChar);
-            if (focusElement is DoubleKeyboardItem)
+            if (focusElement is IKeyboardItem)
             {
-                var item = focusElement as DoubleKeyboardItem;
+                var item = focusElement as IKeyboardItem;
                 item.OpacityValue = 1;
             }
             focusElement.Effect = new DropShadowEffect()
@@ -187,6 +189,26 @@ public partial class MainWindow : Window
 
             };
 
+        }
+    }
+    private void AddBoxShadowForShiftKey()
+    {
+        try
+        {
+            var focusElementCollection = _keyboardCollection.Where(oneKey => (string)oneKey.Tag == "Shift");
+            foreach(var oneFocusElement in focusElementCollection)
+            {
+                oneFocusElement.Effect = new DropShadowEffect() {
+                    ShadowDepth = 5,
+                    Color = Colors.Black,
+                    Opacity = 0.7,
+                    Direction = 200
+                };
+            }
+        }
+        catch
+        {
+            return;
         }
     }
     private void RemoveBoxShadowForLostFocusKey(char lostFocusChar)
@@ -203,9 +225,10 @@ public partial class MainWindow : Window
         string incorrectCharStr = Convert.ToString(_incorrectPressedChar).ToUpper();
         if (_keyboardCollection.Any(oneKey => (string)oneKey?.Tag == incorrectCharStr))
         {
-           var element= _keyboardCollection.First(oneKey => (string)oneKey?.Tag == incorrectCharStr);
-            element.Background = Brushes.Red;
-            element.Foreground = Brushes.White;
+            var element = _keyboardCollection.First(oneKey => (string)oneKey?.Tag == incorrectCharStr);
+            element.SetResourceReference(BackgroundProperty, "IncorrectPushedBackground");
+           
+            
 
         }
     }
@@ -214,7 +237,6 @@ public partial class MainWindow : Window
         string incorrectCharStr = Convert.ToString(_incorrectPressedChar).ToUpper();
         if (_keyboardCollection.Any(oneKey => (string)oneKey?.Tag == incorrectCharStr))
         {
-            MessageBox.Show("I remover incorrect pressed effect!");
             var element = _keyboardCollection.First(oneKey => (string)oneKey?.Tag == incorrectCharStr);
             element.Background = null;
           
@@ -239,11 +261,16 @@ public partial class MainWindow : Window
         {
             if (IsValidUpperKeyDown(e))
             {
+                //добавить проверку на наличии неправильно нажатой клавиши
+                RemoveIncorrectlyPressedEffect();
                 if (_currentCharIndex != _currentWord.Length)
                     RemoveBoxShadowForLostFocusKey(_currentWord[_currentCharIndex]);
                 ChangeFocusChar();
                 if (_currentCharIndex != _currentWord.Length)
+                {
                     AddBoxShadowForFocusKey(_currentWord[_currentCharIndex]);
+                    AddBoxShadowForShiftKey();
+                }
             }
 
             //не совсем коректно работает 
@@ -251,7 +278,7 @@ public partial class MainWindow : Window
             {
                 if (_currentCharIndex != _currentWord.Length)
                 {
-                    
+                    RemoveIncorrectlyPressedEffect();
                     RemoveBoxShadowForLostFocusKey(_currentWord[_currentCharIndex]);
                     
                 }
