@@ -7,9 +7,15 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
+  <ItemGroup>
+    <Resource Include="*/*.png"/>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resource/"/>
   </ItemGroup>
 
 </Project>

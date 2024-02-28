@@ -2,8 +2,10 @@
 using Microsoft.VisualBasic;
 using Microsoft.Xaml.Behaviors.Media;
 using System.Diagnostics;
+using System.IO;
 using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
@@ -129,7 +131,7 @@ public partial class MainWindow : Window
     private bool IsValidUpperKeyDown(KeyEventArgs e) => _isKeyDownHandlerActive && IsUpperChar(_currentCharRun.Text[0]) && e.Key == _currentCharCode && (Keyboard.Modifiers == ModifierKeys.Shift || Keyboard.IsKeyToggled(Key.CapsLock));
     private bool IsValidLowerKeyDown(KeyEventArgs e) => _isKeyDownHandlerActive && IsNotUpperChar(_currentCharRun.Text[0]) && e.Key == _currentCharCode && (!Keyboard.IsKeyDown(Key.LeftShift) || !Keyboard.IsKeyToggled(Key.CapsLock));
 
-    private string[] Cut() => _fullText.Split(new char[] { ' ', ',', '.', ';', ':', '-', '!', '?' }, StringSplitOptions.RemoveEmptyEntries);
+    private string[] Cut() => _fullText.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
     private async Task UpdateTimeLabelAsync()
     {
@@ -196,9 +198,10 @@ public partial class MainWindow : Window
         try
         {
             var focusElementCollection = _keyboardCollection.Where(oneKey => (string)oneKey.Tag == "Shift");
-            foreach(var oneFocusElement in focusElementCollection)
+            foreach (var oneFocusElement in focusElementCollection)
             {
-                oneFocusElement.Effect = new DropShadowEffect() {
+                oneFocusElement.Effect = new DropShadowEffect()
+                {
                     ShadowDepth = 5,
                     Color = Colors.Black,
                     Opacity = 0.7,
@@ -227,8 +230,8 @@ public partial class MainWindow : Window
         {
             var element = _keyboardCollection.First(oneKey => (string)oneKey?.Tag == incorrectCharStr);
             element.SetResourceReference(BackgroundProperty, "IncorrectPushedBackground");
-           
-            
+
+
 
         }
     }
@@ -239,7 +242,7 @@ public partial class MainWindow : Window
         {
             var element = _keyboardCollection.First(oneKey => (string)oneKey?.Tag == incorrectCharStr);
             element.Background = null;
-          
+
 
         }
     }
@@ -269,7 +272,7 @@ public partial class MainWindow : Window
                 if (_currentCharIndex != _currentWord.Length)
                 {
                     AddBoxShadowForFocusKey(_currentWord[_currentCharIndex]);
-                    AddBoxShadowForShiftKey();
+                    //AddBoxShadowForShiftKey();
                 }
             }
 
@@ -280,7 +283,7 @@ public partial class MainWindow : Window
                 {
                     RemoveIncorrectlyPressedEffect();
                     RemoveBoxShadowForLostFocusKey(_currentWord[_currentCharIndex]);
-                    
+
                 }
 
                 ChangeFocusChar();
@@ -333,8 +336,8 @@ public partial class MainWindow : Window
         await UpdateTimeLabelAsync();
     }
 
-
-
-
-
+    private void Button_Click_1(object sender, RoutedEventArgs e)
+    {
+        new ResultWindow(123.50,12, 20).ShowDialog();
+    }
 }
