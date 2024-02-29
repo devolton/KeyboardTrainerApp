@@ -1,9 +1,11 @@
 ﻿using KeyboardTrainerApp.CustomControls;
+using MaterialDesignThemes.Wpf;
 using Microsoft.VisualBasic;
 using Microsoft.Xaml.Behaviors.Media;
 using System.Diagnostics;
 using System.IO;
 using System.Net.Mail;
+using System.Printing;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Timers;
@@ -25,6 +27,7 @@ namespace KeyboardTrainerApp;
 
 public partial class MainWindow : Window
 {
+    private double _printSpeed;
     private DispatcherTimer _timer;
     private int _charsCounter = 0;
     private Stopwatch _stopwatch;
@@ -63,6 +66,7 @@ public partial class MainWindow : Window
                 StartButton.IsEnabled = true;
                 _timer.Stop();
                 _stopwatch.Reset();
+                new ResultWindow(_printSpeed, _missclickCounter, _stopwatch.Elapsed.Seconds).ShowDialog();
                 return;
             }
             _currentCharIndex = 0;
@@ -121,8 +125,8 @@ public partial class MainWindow : Window
     private void UpdatePrintSpeed()
     {
         var seconds = _stopwatch.Elapsed.Seconds;
-        var speed = ((double)_charsCounter / (double)seconds) * 60;
-        PrintSpeedLabel.Content = speed.ToString("F2") + " sb/min";
+         _printSpeed = ((double)_charsCounter / (double)seconds) * 60;
+        PrintSpeedLabel.Content = _printSpeed.ToString("F2") + " sb/min";
     }
 
     private bool IsUpperChar(char ch) => ch >= 'A' && ch <= 'Z';
@@ -338,6 +342,6 @@ public partial class MainWindow : Window
 
     private void Button_Click_1(object sender, RoutedEventArgs e)
     {
-        new ResultWindow(123.50,12, 20).ShowDialog();
+        new ResultWindow(250.50,12, 20).ShowDialog();
     }
 }
