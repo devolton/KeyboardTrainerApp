@@ -7,6 +7,7 @@ using System.IO;
 using System.Net.Mail;
 using System.Printing;
 using System.Text;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Timers;
 using System.Windows;
@@ -27,10 +28,12 @@ namespace KeyboardTrainerApp;
 
 public partial class MainWindow : Window
 {
+    private readonly string _textsFilePath;
     private double _printSpeed;
     private DispatcherTimer _timer;
     private int _charsCounter = 0;
     private Stopwatch _stopwatch;
+    private string[] _textsArray;
     private string _fullText;
     private string[] _wordsArray;
     private string _currentWord;
@@ -48,11 +51,13 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        _textsFilePath = "../../../Resource/data.json";
 
     }
 
     public void ChangeFocusChar()
     {
+
         _currentInlineCollection = focusWordTextBlock.Inlines;
         _currentCharRun = _currentInlineCollection.ElementAt(_currentCharIndex) as Run;
         _currentCharRun.Foreground = Brushes.Gray;
@@ -64,6 +69,7 @@ public partial class MainWindow : Window
                 StartButton.FontSize = 18;
                 StartButton.Content = "Play again";
                 StartButton.IsEnabled = true;
+                ChangeTextButton.IsEnabled = true;
                 _timer.Stop();
                 _stopwatch.Reset();
                 new ResultWindow(_printSpeed, _missclickCounter, _stopwatch.Elapsed.Seconds).ShowDialog();
@@ -136,6 +142,13 @@ public partial class MainWindow : Window
     private bool IsValidLowerKeyDown(KeyEventArgs e) => _isKeyDownHandlerActive && IsNotUpperChar(_currentCharRun.Text[0]) && e.Key == _currentCharCode && (!Keyboard.IsKeyDown(Key.LeftShift) || !Keyboard.IsKeyToggled(Key.CapsLock));
 
     private string[] Cut() => _fullText.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+    private string[] GetTextsFromFile()
+    {
+        using var sr = new StreamReader(_textsFilePath);
+        var jsonContent = sr.ReadToEnd();
+        return JsonSerializer.Deserialize<string[]>(jsonContent) ?? new string[1];
+
+    }
 
     private async Task UpdateTimeLabelAsync()
     {
@@ -150,7 +163,7 @@ public partial class MainWindow : Window
     private void UpdateGameData()
     {
         prevRun.Text = String.Empty;
-        _fullText = "Hello think it wanna be some interesting and I know you must doing this";
+        _fullText = _textsArray[0]; //add random index
         _wordsArray = Cut();
         _missclickCounter = 0;
         _charsCounter = 0;
@@ -197,27 +210,7 @@ public partial class MainWindow : Window
 
         }
     }
-    private void AddBoxShadowForShiftKey()
-    {
-        try
-        {
-            var focusElementCollection = _keyboardCollection.Where(oneKey => (string)oneKey.Tag == "Shift");
-            foreach (var oneFocusElement in focusElementCollection)
-            {
-                oneFocusElement.Effect = new DropShadowEffect()
-                {
-                    ShadowDepth = 5,
-                    Color = Colors.Black,
-                    Opacity = 0.7,
-                    Direction = 200
-                };
-            }
-        }
-        catch
-        {
-            return;
-        }
-    }
+
     private void RemoveBoxShadowForLostFocusKey(char lostFocusChar)
     {
         string lostFocusCharStr = Convert.ToString(lostFocusChar).ToUpper();
@@ -259,6 +252,7 @@ public partial class MainWindow : Window
         _timer = new();
         _timer.Interval = TimeSpan.FromSeconds(1);
         _timer.Tick += Timer_Tick;
+        _textsArray=GetTextsFromFile();
         _keyboardCollection = KeyboardGrid.Children.OfType<UserControl>().ToList();
 
     }
@@ -317,6 +311,7 @@ public partial class MainWindow : Window
         UpdateGameData();
         var button = sender as Button;
         button.IsEnabled = false;
+        ChangeTextButton.IsEnabled = false;
         _timer.Start();
         _stopwatch.Start();
         WordsTextBox.IsEnabled = true;
@@ -330,6 +325,7 @@ public partial class MainWindow : Window
 
     }
 
+    //remove
     private void ChangeThemeButton_Click(object sender, RoutedEventArgs e)
     {
         MainCard.SetResourceReference(BackgroundProperty, "MainThemeBackground");
@@ -340,8 +336,25 @@ public partial class MainWindow : Window
         await UpdateTimeLabelAsync();
     }
 
+    //remove
     private void Button_Click_1(object sender, RoutedEventArgs e)
     {
-        new ResultWindow(250.50,12, 20).ShowDialog();
+        UpdateGameData();
     }
+
+    private void OnCustomButtonMouseEnter(object sender,MouseEventArgs e)
+    {
+        var button = sender as Button;
+        button?.SetResourceReference(StyleProperty, "CustomOnEnterButton");
+
+
+    }
+
+    private void OnCustomButtonMouseLeave(object sender,MouseEventArgs e)
+    {
+        var button = sender as Button;
+        string className = (button.Name == "StartButton") ?"CustomSeaBreezeButton" :"CustomWatterButton";
+        button?.SetResourceReference(StyleProperty, className);
+    }
+
 }

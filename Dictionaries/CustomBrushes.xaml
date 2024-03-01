@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="LowSpeedLevelCardBackground" Color="OrangeRed"/>
+    <SolidColorBrush x:Key="MiddleSpeedLevelCardBackground" Color="Yellow"/>
+    <SolidColorBrush x:Key="MiddlePlusSpeedLevelCardBackground" Color="LightGreen"/>
+    <SolidColorBrush x:Key="HighLevelSpeedCardBackground" Color="ForestGreen"/>
+    <SolidColorBrush x:Key="IncorrectPushedBackground" Color="DarkRed"/>
+    <SolidColorBrush x:Key="MouseEnterButtonBackground" Color="#76c893"/>
+    <SolidColorBrush x:Key="SeaBreezeBrush" Color="#64B6AC"/>
+    <SolidColorBrush x:Key="WatterBrush" Color="#56cfe1"/>
+    <SolidColorBrush x:Key="CustomWhiteBrush" Color="#FCFFFD"/>
+</ResourceDictionary>

@@ -36,6 +36,12 @@
     <Page Update="CustomControls\TripleKeyboardItem.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Dictionaries\CustomBrushes.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Dictionaries\CustomButtons.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

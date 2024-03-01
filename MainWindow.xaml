@@ -18,10 +18,6 @@
         Top="70"
         KeyDown="OnMainFormKeyDown"
         Loaded="Window_Loaded">
-    <Window.Resources>
-        <SolidColorBrush x:Key="MainThemeBackground" Color="{DynamicResource Primary100}"/>
-        <SolidColorBrush x:Key="IncorrectPushedBackground" Color="DarkRed"/>
-    </Window.Resources>
     <materialDesign:Card
         x:Name="MainCard"
         UniformCornerRadius="15"
@@ -38,22 +34,22 @@
                         Height="200"
                         Width="180">
                         <Button
-                            Name="StartButton"
-                            Content="Play"
-                            Foreground="Firebrick"
-                            FontSize="22px"
-                            materialDesign:ShadowAssist.ShadowDepth="Depth3"
-                            Background="{DynamicResource MaterialDesignDivider}"
-                            Height="50"
-                            Margin="40  40 40 40"
-                            Click="Button_Click"/>
+                            x:Name="StartButton"
+                            Content="Start"
+                            Style="{StaticResource CustomSeaBreezeButton}"
+                            Margin="0 30 0 40"
+                            Click="Button_Click"
+                            MouseEnter="OnCustomButtonMouseEnter"
+                            MouseLeave="OnCustomButtonMouseLeave"/>
                         <Button
+                            x:Name="ChangeTextButton"
                            Content="Change text"
-                            FontSize="16"
-                            Foreground="Firebrick"
-                            Background="{DynamicResource MaterialDesignChipBackground}"
-                            Height="50"
-                            Margin= "40 0 40 0" Click="Button_Click_1"/>
+                           Style="{StaticResource CustomWatterButton}"
+                            MouseEnter="OnCustomButtonMouseEnter"
+                            MouseLeave="OnCustomButtonMouseLeave"
+                
+                          
+                            Click="Button_Click_1"/>
                     </StackPanel>
                     <TextBlock
                         Name="WordsTextBox"
@@ -142,9 +138,7 @@
                                 x:Name="ExitButton"
                                 Click="ExitButton_Click"
                                 Content="Exit"/>
-                            <Button
-                                x:Name="ChangeThemeButton"
-                                Click="ChangeThemeButton_Click"/>
+                     
 
                         </StackPanel>
                     </materialDesign:PopupBox>

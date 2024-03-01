@@ -16,12 +16,7 @@
         Top="150"
         
         >
-    <Window.Resources>
-        <SolidColorBrush x:Key="LowSpeedLevelCardBackground" Color="OrangeRed"/>
-        <SolidColorBrush x:Key="MiddleSpeedLevelCardBackground" Color="Yellow"/>
-        <SolidColorBrush x:Key="MiddlePlusSpeedLevelCardBackground" Color="LightGreen"/>
-        <SolidColorBrush x:Key="HighLevelSpeedCardBackground" Color="ForestGreen"/>
-    </Window.Resources>
+ 
     <materialDesign:Card
         x:Name="ResultCard"
         Background="Black"
