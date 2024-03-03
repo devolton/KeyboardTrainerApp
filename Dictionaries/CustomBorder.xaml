@@ -1,0 +1,25 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="CustomKeyboardElementBorder" TargetType="Border">
+        <Setter Property="Margin" Value="3"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect
+                    ShadowDepth="3" Color="Silver" Opacity="0.7"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="CustomKeyboardElementOnFocusBorder" TargetType="Border">
+        <Setter Property="Margin" Value="1"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect
+                   ShadowDepth="7" Color="Green" Opacity="0.8"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -8,15 +8,13 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Border 
-            Tag="Tab"
-            BorderBrush="{DynamicResource MaterialDesignDivider}"
-            BorderThickness="2"
-            Margin="2"
+            Style="{StaticResource CustomKeyboardElementBorder}"
             Opacity="{Binding OpacityValue}">
 
             <Label
+                
                 Background="{Binding BackColor}"
-                FontSize="24px"
+                Style="{StaticResource CustomKeyboardSingleElementCharLabel}"
                 Content="{Binding MainContent}"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"/>

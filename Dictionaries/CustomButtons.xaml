@@ -104,6 +104,75 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+    <Style x:Key="CustomWhiteButton" TargetType="Button">
+        <Setter Property="Width" Value="200"/>
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="Background" Value="{StaticResource CustomWhiteBrush}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontFamily" Value="Georgia"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border
+                        CornerRadius="5"
+                        BorderThickness="1"
+                        Background="{StaticResource CustomWhiteBrush}">
+                        <Border.Effect>
+                            <DropShadowEffect
+                                Direction="300"
+                                Color="#FFFFFF"
+                                ShadowDepth="5"
+                                Opacity="0.8"
+                                BlurRadius="20"/>
+                        </Border.Effect>
+                        <ContentPresenter
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Margin="{TemplateBinding Padding}"/>
+
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CustomOnEnterWhiteButton" TargetType="Button">
+        <Setter Property="Width" Value="210"/>
+        <Setter Property="Height" Value="55"/>
+        <Setter Property="Background" Value="{StaticResource CustomMilkBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource CustomBlackBrush}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontSize" Value="26"/>
+        <Setter Property="FontFamily" Value="Georgia"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border
+                 CornerRadius="5"
+                 BorderThickness="1"
+                 Background="{StaticResource CustomMilkBrush}">
+                        <Border.Effect>
+                            <DropShadowEffect
+                         Direction="300"
+                         Color="#FFFFFF"
+                         ShadowDepth="5"
+                         Opacity="0.8"
+                         BlurRadius="20"/>
+                        </Border.Effect>
+                        <ContentPresenter
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center"
+                     Margin="{TemplateBinding Padding}"/>
+
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
 
     </Style>
     

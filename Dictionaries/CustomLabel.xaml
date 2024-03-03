@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="CustomKeyboardElementCharLabel" TargetType="Label">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontWeight" Value="Heavy"/>
+        <Setter Property="FontFamily" Value="Verdana"/>
+        <Setter Property="FontSize" Value="18px"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="2"
+                                  Color="Black"
+                                  Opacity="0.5"
+                                  Direction="300"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="CustomKeyboardSingleElementCharLabel" TargetType="Label">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontWeight" Value="Heavy"/>
+        <Setter Property="FontFamily" Value="Verdana"/>
+        <Setter Property="FontSize" Value="18px"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="1"
+                                 Color="Snow"
+                                 Opacity="0.2"
+                                 Direction="300"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

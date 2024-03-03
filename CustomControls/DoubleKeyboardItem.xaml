@@ -9,20 +9,17 @@
     <Grid>
 
         <Border
-          BorderBrush="{DynamicResource MaterialDesignDivider}"
-          BorderThickness="2"
-          Margin="2"
+            Style="{StaticResource CustomKeyboardElementBorder}"
             Opacity="{Binding OpacityValue}">
             <Canvas
-                Background="{Binding BackColor}"
-                >
+                   Background="{Binding BackColor}">
                 <Label
-                    FontSize="18px"
+                    Style="{StaticResource CustomKeyboardElementCharLabel}"
                     Content="{Binding TopLeftContent}"
                     Canvas.Top="2"
                     Canvas.Left="2"/>
                 <Label
-                    FontSize="18px"
+                    Style="{StaticResource CustomKeyboardElementCharLabel}"
                     Content="{Binding BottomRightContent}"
                     Canvas.Right="2"
                     Canvas.Bottom="2" />

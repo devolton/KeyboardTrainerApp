@@ -1,12 +1,21 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿
+    <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <SolidColorBrush x:Key="LowSpeedLevelCardBackground" Color="OrangeRed"/>
-    <SolidColorBrush x:Key="MiddleSpeedLevelCardBackground" Color="Yellow"/>
-    <SolidColorBrush x:Key="MiddlePlusSpeedLevelCardBackground" Color="LightGreen"/>
-    <SolidColorBrush x:Key="HighLevelSpeedCardBackground" Color="ForestGreen"/>
+    <SolidColorBrush x:Key="LowSpeedLevelCardBackground" Color="#ef233c"/>
+    <SolidColorBrush x:Key="MiddleSpeedLevelCardBackground" Color="#ffb700"/>
+    <SolidColorBrush x:Key="MiddlePlusSpeedLevelCardBackground" Color="#70e000"/>
+    <SolidColorBrush x:Key="HighLevelSpeedCardBackground" Color="#29bf12"/>
     <SolidColorBrush x:Key="IncorrectPushedBackground" Color="DarkRed"/>
     <SolidColorBrush x:Key="MouseEnterButtonBackground" Color="#76c893"/>
     <SolidColorBrush x:Key="SeaBreezeBrush" Color="#64B6AC"/>
     <SolidColorBrush x:Key="WatterBrush" Color="#56cfe1"/>
-    <SolidColorBrush x:Key="CustomWhiteBrush" Color="#FCFFFD"/>
+    <SolidColorBrush x:Key="CustomWhiteBrush" Color="#f1faee"/>
+    <SolidColorBrush x:Key="CustomMilkBrush" Color="#fefae0"/>
+    <SolidColorBrush x:Key="CustomBlackBrush" Color="#242423"/>
+    <SolidColorBrush x:Key="CustomPinkyKeyboardBrush" Color="#56cfe1"/>
+    <SolidColorBrush x:Key="CustomPinkyKeyboardOnFocusBrush" Color="#4ea8de"/>
+    <SolidColorBrush x:Key="CustomRingKeyboardBrush" Color="#208b3a"/>
+    <SolidColorBrush x:Key="CustomMiddleKeyboardBrush" Color="#ff4d6d"/>
+    <SolidColorBrush x:Key="CustomLeftIndexKeyboardBrush" Color="#3c096c"/>
+    <SolidColorBrush x:Key="CustomRightIndexKeyboardBrush" Color="#ffa200"/>
 </ResourceDictionary>

@@ -1,4 +1,5 @@
 ﻿using KeyboardTrainerApp.CustomControls;
+using System.Globalization;
 using MaterialDesignThemes.Wpf;
 using Microsoft.VisualBasic;
 using Microsoft.Xaml.Behaviors.Media;
@@ -67,12 +68,13 @@ public partial class MainWindow : Window
             {
                 _stopwatch.Stop();
                 StartButton.FontSize = 18;
-                StartButton.Content = "Play again";
+                StartButton.Content = "Start again";
                 StartButton.IsEnabled = true;
                 ChangeTextButton.IsEnabled = true;
                 _timer.Stop();
+                var time = _stopwatch.Elapsed.Seconds;
                 _stopwatch.Reset();
-                new ResultWindow(_printSpeed, _missclickCounter, _stopwatch.Elapsed.Seconds).ShowDialog();
+                new ResultWindow(_printSpeed, _missclickCounter, time).ShowDialog();
                 return;
             }
             _currentCharIndex = 0;
@@ -205,7 +207,6 @@ public partial class MainWindow : Window
                 Color = Colors.Black,
                 Opacity = 0.7,
                 Direction = 200
-
             };
 
         }
@@ -356,5 +357,6 @@ public partial class MainWindow : Window
         string className = (button.Name == "StartButton") ?"CustomSeaBreezeButton" :"CustomWatterButton";
         button?.SetResourceReference(StyleProperty, className);
     }
+
 
 }

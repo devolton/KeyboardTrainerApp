@@ -12,6 +12,9 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
                 <ResourceDictionary Source="Dictionaries/CustomBrushes.xaml"/>
                 <ResourceDictionary Source="Dictionaries/CustomButtons.xaml"/>
+                <ResourceDictionary Source="Dictionaries/CustomTextBlock.xaml"/>
+                <ResourceDictionary Source="Dictionaries/CustomBorder.xaml"/>
+                <ResourceDictionary Source="Dictionaries/CustomLabel.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

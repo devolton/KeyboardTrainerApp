@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
-
+using System.Windows.Controls;
 
 namespace KeyboardTrainerApp
 {
@@ -86,6 +86,20 @@ namespace KeyboardTrainerApp
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Button_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            var button = sender as Button;
+            button?.SetResourceReference(StyleProperty, "CustomOnEnterWhiteButton");
+
+        }
+
+        private void Button_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            var button = sender as Button;
+            button?.SetResourceReference(StyleProperty, "CustomWhiteButton");
+
         }
     }
 }

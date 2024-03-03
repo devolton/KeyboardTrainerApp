@@ -16,7 +16,7 @@
         Top="150"
         
         >
- 
+
     <materialDesign:Card
         x:Name="ResultCard"
         Background="Black"
@@ -47,53 +47,38 @@
                     Grid.Row="0"
                     Grid.Column="0"
                     FontWeight="Bold"
-                    TextDecorations="Underline"
                     Text="Speed"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontSize="24px"/>
+                    Style="{StaticResource CustomResultMainTextBlock}"/>
                 <TextBlock
                     Grid.Column="1"
                     Grid.Row="0"
-                    Text="Miss count"
-                    TextDecorations="Underline"
-                    FontWeight="Bold"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center"
-                    FontSize="22px"/>
+                    Text="Mistake"
+                    Style="{StaticResource CustomResultMainTextBlock}"/>
                 <TextBlock
                     Grid.Column="2"
                     Grid.Row="0"
                     Text="Time"
-                    TextDecorations="Underline"
-                    FontWeight="Bold"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontSize="24px"/>
+                    Style="{StaticResource CustomResultMainTextBlock}"/>
                 <TextBlock
                     Grid.Column="0"
                     Grid.Row="1"
                     x:Name="SpeedResultTextBlock"
                     Text="{Binding Speed}"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center"
-                    FontSize="18"
-                    TextWrapping="Wrap"/>
+                    Style="{StaticResource CustomResultValueTextBlock}"
+                    FontSize="18"/>
                 <TextBlock
                     Grid.Row="1"
                     Grid.Column="1"
                     x:Name="MissCountResultTextBlock"
                     Text="{Binding MissCount}"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
+                    Style="{StaticResource CustomResultValueTextBlock}"
                     FontSize="26px"/>
                 <TextBlock
                     Grid.Row="1"
                     Grid.Column="2"
                     x:Name="TimeResultTextBlock"
-                    HorizontalAlignment="Center"
                     Text="{Binding Time}"
-                    VerticalAlignment="Center"
+                    Style="{StaticResource CustomResultValueTextBlock}"
                     FontSize="22px"/>
             </Grid>
             <TextBlock
@@ -102,16 +87,17 @@
                 x:Name="SpeedLevelDescritionTextBlock"
                 Text="Slow typing speed, typical for a person with little typing experience"
                 FontSize="24px"
+                FontFamily="Georgia"
                 TextWrapping="WrapWithOverflow"
                 TextAlignment="Center"/>
             <Button
-                Style="{StaticResource MaterialDesignFlatMidBgButton}"
-                Width="300"
-                Height="40"
+                Style="{StaticResource CustomWhiteButton}"
                 Content="Close"
-                FontSize="24px" Click="Button_Click"/>
+                Click="Button_Click"
+                MouseEnter="Button_MouseEnter"
+                MouseLeave="Button_MouseLeave"/>
 
         </StackPanel>
-        
-        </materialDesign:Card>
+
+    </materialDesign:Card>
 </Window>

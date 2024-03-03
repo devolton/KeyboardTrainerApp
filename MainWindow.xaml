@@ -97,7 +97,7 @@
                                 FontSize="18px"
                                 Grid.Row="1"
                                 Grid.Column="0"
-                                Content="Miss count:"
+                                Content="Mistake:"
                                 VerticalAlignment="Bottom"
                                 HorizontalAlignment="Left"/>
                             <Label
@@ -171,14 +171,14 @@
                         BottomLeftContent="`"
                         BottomRightContent="Ё"
                         Tag="~"
-                        BackColor="IndianRed"
+                        BackColor="{StaticResource CustomPinkyKeyboardBrush}"
                         Grid.Row="0"
                         Grid.Column="0"/>
                     <local:DoubleKeyboardItem
                        TopLeftContent="!"
                         BottomRightContent="1"
                         Tag="1"
-                        BackColor="IndianRed"
+                        BackColor="{StaticResource CustomPinkyKeyboardBrush}"
                         Grid.Column="1"
                         Grid.Row="0"/>
                     <uc:TripleKeyboardItem
@@ -186,7 +186,7 @@
                         BottomLeftContent="&quot;"
                         BottomRightContent="2"
                         Tag="2"
-                        BackColor="CornflowerBlue"
+                        BackColor="{StaticResource CustomRingKeyboardBrush}"
                         Grid.Column="2"
                         Grid.Row="0"/>
                     <uc:TripleKeyboardItem
@@ -194,7 +194,7 @@
                         BottomLeftContent="№"
                         BottomRightContent="3"
                         Tag="3"
-                        BackColor="LightGreen"
+                        BackColor="{StaticResource CustomMiddleKeyboardBrush}"
                         Grid.Column="3"
                         Grid.Row="0"/>
                     <uc:TripleKeyboardItem
@@ -202,21 +202,21 @@
                         BottomLeftContent=";"
                         BottomRightContent="4"
                         Tag="4"
-                        BackColor="SandyBrown"
+                        BackColor="{StaticResource CustomLeftIndexKeyboardBrush}"
                         Grid.Column="4"
                         Grid.Row="0"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent="%"
                         BottomRightContent="5"
                         Tag="5"
-                        BackColor="SandyBrown"
+                        BackColor="{StaticResource CustomLeftIndexKeyboardBrush}"
                         Grid.Column="5"
                         Grid.Row="0"/>
                     <uc:TripleKeyboardItem
                         TopLeftContent="^"
                         BottomRightContent="6"
                         BottomLeftContent=":"
-                        BackColor="Pink"
+                        BackColor="{StaticResource CustomRightIndexKeyboardBrush}"
                         Tag="6"
                         Grid.Column="6"
                         Grid.Row="0"/>
@@ -225,42 +225,42 @@
                         BottomLeftContent="?"
                         BottomRightContent="7"
                         Tag="7"
-                        BackColor="CadetBlue"
+                        BackColor="{StaticResource CustomMiddleKeyboardBrush}"
                         Grid.Row="0"
                         Grid.Column="7"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent="*"
                         BottomRightContent="8"
                         Tag="8"
-                        BackColor="ForestGreen"
+                        BackColor="{StaticResource CustomRingKeyboardBrush}"
                         Grid.Column="8"
                         Grid.Row="0"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent="("
                         BottomRightContent="9"
                         Tag="9"
-                        BackColor="Bisque"
+                        BackColor="{StaticResource CustomPinkyKeyboardBrush}"
                         Grid.Column="9"
                         Grid.Row="0"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent=")"
                         BottomRightContent="0"
                         Tag="0"
-                        BackColor="Bisque"
+                        BackColor="{StaticResource CustomPinkyKeyboardBrush}"
                         Grid.Column="10"
                         Grid.Row="0"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent="_"
                         BottomRightContent="-"
                         Tag="-"
-                        BackColor="Bisque"
+                        BackColor="{StaticResource CustomPinkyKeyboardBrush}"
                         Grid.Column="11"
                         Grid.Row="0"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent="+"
                         BottomRightContent="="
                         Tag="="
-                        BackColor="Bisque"
+                        BackColor="{StaticResource CustomPinkyKeyboardBrush}"
                         Grid.Column="12"
                         Grid.Row="0"/>
 
@@ -270,77 +270,77 @@
 
                     <uc:SingleKeyboardItem
                         MainContent="TAB"
-                        BackColor="IndianRed"
+                        BackColor="{StaticResource CustomPinkyKeyboardBrush}"
                         Grid.Column="0"
                         Grid.Row="1"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent="Q"
                         BottomRightContent="Й"
                         Tag="Q"
-                        BackColor="IndianRed"
+                        BackColor="{StaticResource CustomPinkyKeyboardOnFocusBrush}"
                         Grid.Row="1"
                         Grid.Column="1"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent="W"
                         BottomRightContent="Ц"
                         Tag="W"
-                        BackColor="CornflowerBlue"
+                        BackColor="{StaticResource CustomRingKeyboardBrush}"
                         Grid.Column="2"
                         Grid.Row="1"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent="E"
                         BottomRightContent="У"
                         Tag="E"
-                        BackColor="LightGreen"
+                        BackColor="{StaticResource CustomMiddleKeyboardBrush}"
                         Grid.Column="3"
                         Grid.Row="1"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent="R"
                         BottomRightContent="К"
                         Tag="R"
-                        BackColor="SandyBrown"
+                        BackColor="{StaticResource CustomLeftIndexKeyboardBrush}"
                         Grid.Column="4"
                         Grid.Row="1"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent="T"
                         BottomRightContent="Е"
                         Tag="T"
-                        BackColor="SandyBrown"
+                        BackColor="{StaticResource CustomLeftIndexKeyboardBrush}"
                         Grid.Column="5"
                         Grid.Row="1"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent="Y"
                         BottomRightContent="Н"
                         Tag="Y"
-                        BackColor="Pink"
+                        BackColor="{StaticResource CustomRightIndexKeyboardBrush}"
                         Grid.Column="6"
                         Grid.Row="1"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent="U"
                         BottomRightContent="Г"
                         Tag="U"
-                        BackColor="Pink"
+                        BackColor="{StaticResource CustomRightIndexKeyboardBrush}"
                         Grid.Column="7"
                         Grid.Row="1"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent="I"
                         BottomRightContent="Ш"
                         Tag="I"
-                        BackColor="CadetBlue"
+                        BackColor="{StaticResource CustomMiddleKeyboardBrush}"
                         Grid.Column="8"
                         Grid.Row="1"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent="O"
                         BottomRightContent="Щ"
                         Tag="O"
-                        BackColor="ForestGreen"
+                        BackColor="{StaticResource CustomRingKeyboardBrush}"
                         Grid.Column="9"
                         Grid.Row="1"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent="P"
                         BottomRightContent="З"
                         Tag="P"
-                        BackColor="Bisque"
+                        BackColor="{StaticResource CustomPinkyKeyboardBrush}"
                         Grid.Column="10"
                         Grid.Row="1"/>
                     <uc:TripleKeyboardItem
@@ -348,7 +348,7 @@
                         BottomRightContent="Х"
                         TopLeftContent=".{"
                         Tag="["
-                        BackColor="Bisque"
+                        BackColor="{StaticResource CustomPinkyKeyboardBrush}"
                         Grid.Column="11"
                         Grid.Row="1"/>
                     <uc:TripleKeyboardItem
@@ -356,14 +356,14 @@
                         BottomLeftContent="]"
                         BottomRightContent="Ъ"
                         Tag="]"
-                        BackColor="Bisque"
+                        BackColor="{StaticResource CustomPinkyKeyboardBrush}"
                         Grid.Column="12"
                         Grid.Row="1"/>
 
 
                     <uc:SingleKeyboardItem
                         MainContent="CAPS"
-                        BackColor="IndianRed"
+                        BackColor="{StaticResource CustomPinkyKeyboardBrush}"
                         Grid.Column="0"
                         Grid.Row="2"/>
 
@@ -371,63 +371,63 @@
                         TopLeftContent="A"
                         BottomRightContent="Ф"
                         Tag="A"
-                        BackColor="IndianRed"
+                        BackColor="{StaticResource CustomPinkyKeyboardBrush}"
                         Grid.Column="1"
                         Grid.Row="2"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent="S"
                         BottomRightContent="І"
                         Tag="S"
-                        BackColor="CornflowerBlue"
+                        BackColor="{StaticResource CustomRingKeyboardBrush}"
                         Grid.Column="2"
                         Grid.Row="2"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent="D"
                         BottomRightContent="В"
                         Tag="D"
-                        BackColor="LightGreen"
+                        BackColor="{StaticResource CustomMiddleKeyboardBrush}"
                         Grid.Column="3"
                         Grid.Row="2"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent="F"
                         BottomRightContent="А"
                         Tag="F"
-                        BackColor="SandyBrown"
+                        BackColor="{StaticResource CustomLeftIndexKeyboardBrush}"
                         Grid.Row="2"
                         Grid.Column="4"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent="G"
                         BottomRightContent="П"
                         Tag="G"
-                        BackColor="SandyBrown"
+                        BackColor="{StaticResource CustomLeftIndexKeyboardBrush}"
                         Grid.Row="2"
                         Grid.Column="5"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent="H"
                         BottomRightContent="Р"
                         Tag="H"
-                        BackColor="Pink"
+                        BackColor="{StaticResource CustomRightIndexKeyboardBrush}"
                         Grid.Row="2"
                         Grid.Column="6"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent="J"
                         BottomRightContent="О"
                         Tag="J"
-                        BackColor="Pink"
+                        BackColor="{StaticResource CustomRightIndexKeyboardBrush}"
                         Grid.Column="7"
                         Grid.Row="2"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent="K"
                         BottomRightContent="Л"
                         Tag="K"
-                        BackColor="CadetBlue"
+                        BackColor="{StaticResource CustomMiddleKeyboardBrush}"
                         Grid.Column="8"
                         Grid.Row="2"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent="L"
                         BottomRightContent="Д"
                         Tag="L"
-                        BackColor="ForestGreen"
+                        BackColor="{StaticResource CustomRingKeyboardBrush}"
                         Grid.Column="9"
                         Grid.Row="2"/>
                     <uc:TripleKeyboardItem
@@ -435,7 +435,7 @@
                         BottomLeftContent=";"
                         BottomRightContent="Ж"
                         Tag=":"
-                        BackColor="Bisque"
+                        BackColor="{StaticResource CustomPinkyKeyboardBrush}"
                         Grid.Row="2"
                         Grid.Column="10"/>
                     <uc:TripleKeyboardItem
@@ -443,7 +443,7 @@
                         BottomLeftContent="&apos;"
                         BottomRightContent="Э"
                         Tag="quot"
-                        BackColor="Bisque"
+                        BackColor="{StaticResource CustomPinkyKeyboardBrush}"
                         Grid.Row="2"
                         Grid.Column="11"/>
                     <uc:QuadrupleKeyboardItem
@@ -452,7 +452,7 @@
                         BottomRightContent="\"
                         TopRightContent="/"
                         Tag="|"
-                        BackColor="Bisque"
+                        BackColor="{StaticResource CustomPinkyKeyboardBrush}"
                         Grid.Row="2"
                         Grid.Column="12"/>
 
@@ -460,7 +460,7 @@
                     <uc:SingleKeyboardItem 
                         MainContent="SHIFT"
                         Tag="Shift"
-                        BackColor="IndianRed"
+                        BackColor="{StaticResource CustomPinkyKeyboardBrush}"
                         Grid.Row="3"
                         Grid.Column="0"
                         Grid.ColumnSpan="2"/>
@@ -468,49 +468,49 @@
                         TopLeftContent="Z"
                         BottomRightContent="Я"
                         Tag="Z"
-                        BackColor="IndianRed"
+                        BackColor="{StaticResource CustomPinkyKeyboardBrush}"
                         Grid.Column="2"
                         Grid.Row="3"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent="X"
                         BottomRightContent="Ч"
                         Tag="X"
-                        BackColor="CornflowerBlue"
+                        BackColor="{StaticResource CustomRingKeyboardBrush}"
                         Grid.Column="3"
                         Grid.Row="3"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent="C"
                         BottomRightContent="С"
                         Tag="C"
-                        BackColor="LightGreen"
+                        BackColor="{StaticResource CustomMiddleKeyboardBrush}"
                         Grid.Column="4"
                         Grid.Row="3"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent="V"
                         BottomRightContent="М"
                         Tag="V"
-                        BackColor="SandyBrown"
+                        BackColor="{StaticResource CustomLeftIndexKeyboardBrush}"
                         Grid.Column="5"
                         Grid.Row="3"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent="B"
                         BottomRightContent="И"
                         Tag="B"
-                        BackColor="SandyBrown"
+                        BackColor="{StaticResource CustomLeftIndexKeyboardBrush}"
                         Grid.Column="6"
                         Grid.Row="3"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent="N"
                         BottomRightContent="Т"
                         Tag="N"
-                        BackColor="Pink"
+                        BackColor="{StaticResource CustomRightIndexKeyboardBrush}"
                         Grid.Row="3"
                         Grid.Column="7"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent="M"
                         BottomRightContent="Ь"
                         Tag="M"
-                        BackColor="Pink"
+                        BackColor="{StaticResource CustomRightIndexKeyboardBrush}"
                         Grid.Column="8"
                         Grid.Row="3"/>
                     <uc:TripleKeyboardItem
@@ -518,7 +518,7 @@
                         BottomLeftContent=","
                         BottomRightContent="Б"
                         Tag="LeftArrow"
-                        BackColor="CadetBlue"
+                        BackColor="{StaticResource CustomMiddleKeyboardBrush}"
                         Grid.Column="9"
                         Grid.Row="3"
                         />
@@ -527,7 +527,7 @@
                         BottomLeftContent="."
                         BottomRightContent="Ю"
                         Tag="RightArrow"
-                        BackColor="ForestGreen"
+                        BackColor="{StaticResource CustomRingKeyboardBrush}"
                         Grid.Column="10"
                         Grid.Row="3"/>
                     <uc:QuadrupleKeyboardItem
@@ -535,12 +535,12 @@
                             BottomLeftContent=","
                             TopRightContent=","
                             BottomRightContent="."
-                            BackColor="Bisque"
+                            BackColor="{StaticResource CustomPinkyKeyboardBrush}"
                             Grid.Column="11"
                             Grid.Row="3"/>
                     <uc:SingleKeyboardItem
                         MainContent="Shift"
-                        BackColor="Bisque"
+                        BackColor="{StaticResource CustomPinkyKeyboardBrush}"
                         Tag="Shift"
                         Grid.Column="13"
                         Grid.Row="3"/>
