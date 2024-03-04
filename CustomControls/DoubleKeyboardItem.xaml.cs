@@ -32,7 +32,36 @@ namespace KeyboardTrainerApp
         {
             InitializeComponent();
             DataContext = this;
-            OpacityValue = 0.7;
+            OpacityValue = 0.8;
+        }
+
+        public void SetFocusStyle()
+        {
+            KeyboardBorder.SetResourceReference(StyleProperty, "CustomKeyboardElementOnFocusBorder");
+            var labelsContainer = KeyboardCanvas.Children.OfType<Label>();
+            foreach(var oneLabel in labelsContainer)
+            {
+                oneLabel.SetResourceReference(StyleProperty, "CustomKeyboardElementCharOnFocusLabel");
+            }
+            OpacityValue = 1;
+        }
+
+        public void SetDefaultStyle()
+        {
+
+            KeyboardBorder.SetResourceReference(StyleProperty, "CustomKeyboardElementBorder");
+            var labelsContainer = KeyboardCanvas.Children.OfType<Label>();
+            foreach (var oneLabel in labelsContainer)
+            {
+                oneLabel.SetResourceReference(StyleProperty, "CustomKeyboardElementCharLabel");
+            }
+            OpacityValue = 0.8;
+        }
+
+        public void SetMisclickStyle()
+        {
+            KeyboardBorder.SetResourceReference(StyleProperty, "CustomKeyboardElementMisclickBorder");
+            
         }
     }
 }

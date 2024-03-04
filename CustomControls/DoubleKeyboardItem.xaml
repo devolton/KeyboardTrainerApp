@@ -9,11 +9,14 @@
     <Grid>
 
         <Border
+            x:Name="KeyboardBorder"
             Style="{StaticResource CustomKeyboardElementBorder}"
             Opacity="{Binding OpacityValue}">
             <Canvas
+                  x:Name="KeyboardCanvas"
                    Background="{Binding BackColor}">
                 <Label
+                  
                     Style="{StaticResource CustomKeyboardElementCharLabel}"
                     Content="{Binding TopLeftContent}"
                     Canvas.Top="2"

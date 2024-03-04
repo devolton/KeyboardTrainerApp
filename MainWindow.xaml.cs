@@ -92,7 +92,7 @@ public partial class MainWindow : Window
 
 
 
-
+    
     private void DrawCharsRun()
     {
         for (int i = 0; i < _currentWord.Length; i++)
@@ -196,18 +196,9 @@ public partial class MainWindow : Window
         if (_keyboardCollection.Any(oneKey => (string)oneKey?.Tag == curChar))
         {
             var focusElement = _keyboardCollection.First(oneKeyboardElement => (string)oneKeyboardElement?.Tag == curChar);
-            if (focusElement is IKeyboardItem)
-            {
-                var item = focusElement as IKeyboardItem;
-                item.OpacityValue = 1;
-            }
-            focusElement.Effect = new DropShadowEffect()
-            {
-                ShadowDepth = 5,
-                Color = Colors.Black,
-                Opacity = 0.7,
-                Direction = 200
-            };
+            var item=focusElement as IKeyboardItem;
+            item?.SetFocusStyle();
+            
 
         }
     }
@@ -217,7 +208,9 @@ public partial class MainWindow : Window
         string lostFocusCharStr = Convert.ToString(lostFocusChar).ToUpper();
         if (_keyboardCollection.Any(oneKey => (string)oneKey?.Tag == lostFocusCharStr))
         {
-            _keyboardCollection.First(oneKey => (string)oneKey?.Tag == lostFocusCharStr).Effect = null;
+            var focusElement = _keyboardCollection.First(oneKeyboardElement => (string)oneKeyboardElement?.Tag == lostFocusCharStr);
+            var item = focusElement as IKeyboardItem;
+            item?.SetDefaultStyle();
         }
 
     }
@@ -226,10 +219,8 @@ public partial class MainWindow : Window
         string incorrectCharStr = Convert.ToString(_incorrectPressedChar).ToUpper();
         if (_keyboardCollection.Any(oneKey => (string)oneKey?.Tag == incorrectCharStr))
         {
-            var element = _keyboardCollection.First(oneKey => (string)oneKey?.Tag == incorrectCharStr);
-            element.SetResourceReference(BackgroundProperty, "IncorrectPushedBackground");
-
-
+            var element = _keyboardCollection.First(oneKey => (string)oneKey?.Tag == incorrectCharStr) as IKeyboardItem;
+            element?.SetMisclickStyle();
 
         }
     }
@@ -238,8 +229,8 @@ public partial class MainWindow : Window
         string incorrectCharStr = Convert.ToString(_incorrectPressedChar).ToUpper();
         if (_keyboardCollection.Any(oneKey => (string)oneKey?.Tag == incorrectCharStr))
         {
-            var element = _keyboardCollection.First(oneKey => (string)oneKey?.Tag == incorrectCharStr);
-            element.Background = null;
+            var element = _keyboardCollection.First(oneKey => (string)oneKey?.Tag == incorrectCharStr) as IKeyboardItem;
+            element.SetDefaultStyle();
 
 
         }

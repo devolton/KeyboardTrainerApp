@@ -12,13 +12,24 @@
         </Setter>
     </Style>
     <Style x:Key="CustomKeyboardElementOnFocusBorder" TargetType="Border">
-        <Setter Property="Margin" Value="1"/>
+        <Setter Property="Margin" Value="2"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="BorderBrush" Value="GreenYellow"/>
         <Setter Property="Effect">
             <Setter.Value>
                 <DropShadowEffect
-                   ShadowDepth="7" Color="Green" Opacity="0.8"/>
+                   ShadowDepth="7" Color="Black" Opacity="0.7"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="CustomKeyboardElementMisclickBorder" TargetType="Border">
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="BorderThickness" Value="5"/>
+        <Setter Property="BorderBrush" Value="{StaticResource IncorrectPushedBackground}"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect
+              ShadowDepth="4" Color="DarkRed" Opacity="0.6"/>
             </Setter.Value>
         </Setter>
     </Style>

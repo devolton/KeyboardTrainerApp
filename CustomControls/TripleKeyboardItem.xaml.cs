@@ -13,24 +13,51 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace KeyboardTrainerApp.CustomControls
+namespace KeyboardTrainerApp.CustomControls;
+/// <summary>
+/// Логика взаимодействия для TripleKeyboardItem.xaml
+/// </summary>
+public partial class TripleKeyboardItem : UserControl, IKeyboardItem
 {
-    /// <summary>
-    /// Логика взаимодействия для TripleKeyboardItem.xaml
-    /// </summary>
-    public partial class TripleKeyboardItem : UserControl,IKeyboardItem
-    {
-        public string TopLeftContent { get; set; }
-        public string BottomLeftContent { get; set; }   
-        public string BottomRightContent { get; set; }
-        public SolidColorBrush BackColor { get; set; }
-        public double OpacityValue { get; set; }
+    public string TopLeftContent { get; set; }
+    public string BottomLeftContent { get; set; }
+    public string BottomRightContent { get; set; }
+    public SolidColorBrush BackColor { get; set; }
+    public double OpacityValue { get; set; }
 
-        public TripleKeyboardItem()
+    public TripleKeyboardItem()
+    {
+        InitializeComponent();
+        DataContext = this;
+        OpacityValue = 0.8;
+    }
+
+    public void SetFocusStyle()
+    {
+        KeyboardBorder.SetResourceReference(StyleProperty, "CustomKeyboardElementOnFocusBorder");
+        var labelsContainer = KeyboardCanvas.Children.OfType<Label>();
+        foreach (var oneLabel in labelsContainer)
         {
-            InitializeComponent();
-            DataContext = this;
-            OpacityValue = 0.7;
+            oneLabel.SetResourceReference(StyleProperty, "CustomKeyboardElementCharOnFocusLabel");
         }
+        OpacityValue = 1;
+    }
+
+    public void SetDefaultStyle()
+    {
+
+        KeyboardBorder.SetResourceReference(StyleProperty, "CustomKeyboardElementBorder");
+        var labelsContainer = KeyboardCanvas.Children.OfType<Label>();
+        foreach (var oneLabel in labelsContainer)
+        {
+            oneLabel.SetResourceReference(StyleProperty, "CustomKeyboardElementCharLabel");
+        }
+        OpacityValue = 0.8;
+    }
+
+    public void SetMisclickStyle()
+    {
+        KeyboardBorder.SetResourceReference(StyleProperty, "CustomKeyboardElementMisclickBorder");
+
     }
 }

@@ -144,6 +144,7 @@
                     </materialDesign:PopupBox>
                 </StackPanel>
                 <Grid
+                    Background="Snow"
                     x:Name="KeyboardGrid">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="70"/>
@@ -186,7 +187,7 @@
                         BottomLeftContent="&quot;"
                         BottomRightContent="2"
                         Tag="2"
-                        BackColor="{StaticResource CustomRingKeyboardBrush}"
+                        BackColor="{StaticResource CustomPinkyKeyboardBrush}"
                         Grid.Column="2"
                         Grid.Row="0"/>
                     <uc:TripleKeyboardItem
@@ -194,7 +195,7 @@
                         BottomLeftContent="№"
                         BottomRightContent="3"
                         Tag="3"
-                        BackColor="{StaticResource CustomMiddleKeyboardBrush}"
+                        BackColor="{StaticResource CustomRingKeyboardBrush}"
                         Grid.Column="3"
                         Grid.Row="0"/>
                     <uc:TripleKeyboardItem
@@ -202,7 +203,7 @@
                         BottomLeftContent=";"
                         BottomRightContent="4"
                         Tag="4"
-                        BackColor="{StaticResource CustomLeftIndexKeyboardBrush}"
+                        BackColor="{StaticResource CustomMiddleKeyboardBrush}"
                         Grid.Column="4"
                         Grid.Row="0"/>
                     <local:DoubleKeyboardItem
@@ -216,7 +217,7 @@
                         TopLeftContent="^"
                         BottomRightContent="6"
                         BottomLeftContent=":"
-                        BackColor="{StaticResource CustomRightIndexKeyboardBrush}"
+                        BackColor="{StaticResource CustomLeftIndexKeyboardBrush}"
                         Tag="6"
                         Grid.Column="6"
                         Grid.Row="0"/>
@@ -225,21 +226,21 @@
                         BottomLeftContent="?"
                         BottomRightContent="7"
                         Tag="7"
-                        BackColor="{StaticResource CustomMiddleKeyboardBrush}"
+                        BackColor="{StaticResource CustomRightIndexKeyboardBrush}"
                         Grid.Row="0"
                         Grid.Column="7"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent="*"
                         BottomRightContent="8"
                         Tag="8"
-                        BackColor="{StaticResource CustomRingKeyboardBrush}"
+                        BackColor="{StaticResource CustomMiddleKeyboardBrush}"
                         Grid.Column="8"
                         Grid.Row="0"/>
                     <local:DoubleKeyboardItem
                         TopLeftContent="("
                         BottomRightContent="9"
                         Tag="9"
-                        BackColor="{StaticResource CustomPinkyKeyboardBrush}"
+                        BackColor="{StaticResource CustomRingKeyboardBrush}"
                         Grid.Column="9"
                         Grid.Row="0"/>
                     <local:DoubleKeyboardItem
@@ -277,7 +278,7 @@
                         TopLeftContent="Q"
                         BottomRightContent="Й"
                         Tag="Q"
-                        BackColor="{StaticResource CustomPinkyKeyboardOnFocusBrush}"
+                        BackColor="{StaticResource CustomPinkyKeyboardBrush}"
                         Grid.Row="1"
                         Grid.Column="1"/>
                     <local:DoubleKeyboardItem

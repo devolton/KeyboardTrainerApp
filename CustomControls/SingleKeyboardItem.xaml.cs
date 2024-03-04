@@ -30,5 +30,21 @@ namespace KeyboardTrainerApp.CustomControls
             DataContext = this;
             OpacityValue = 0.7;
         }
+
+        public void SetFocusStyle()
+        {
+            KeyboardBorder.SetResourceReference(StyleProperty, "CustomKeyboardElementOnFocusBorder");
+            
+        }
+
+        public void SetDefaultStyle()
+        {
+            KeyboardBorder.SetResourceReference(StyleProperty, "CustomKeyboardElementBorder");
+        }
+
+        public void SetMisclickStyle()
+        {
+            KeyboardBorder.SetResourceReference(StyleProperty, "CustomKeyboardElementMisclickBorder");
+        }
     }
 }

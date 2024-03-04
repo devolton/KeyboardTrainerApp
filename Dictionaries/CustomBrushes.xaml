@@ -5,7 +5,7 @@
     <SolidColorBrush x:Key="MiddleSpeedLevelCardBackground" Color="#ffb700"/>
     <SolidColorBrush x:Key="MiddlePlusSpeedLevelCardBackground" Color="#70e000"/>
     <SolidColorBrush x:Key="HighLevelSpeedCardBackground" Color="#29bf12"/>
-    <SolidColorBrush x:Key="IncorrectPushedBackground" Color="DarkRed"/>
+    <SolidColorBrush x:Key="IncorrectPushedBackground" Color="#e63946"/>
     <SolidColorBrush x:Key="MouseEnterButtonBackground" Color="#76c893"/>
     <SolidColorBrush x:Key="SeaBreezeBrush" Color="#64B6AC"/>
     <SolidColorBrush x:Key="WatterBrush" Color="#56cfe1"/>

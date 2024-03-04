@@ -34,5 +34,30 @@ namespace KeyboardTrainerApp.CustomControls
             OpacityValue = 0.7;
 
         }
+
+        public void SetFocusStyle()
+        {
+            KeyboardBorder.SetResourceReference(StyleProperty, "CustomKeyboardElementOnFocusBorder");
+            var labelsContainer = KeyboardCanvas.Children.OfType<Label>();
+            foreach (var oneLabel in labelsContainer)
+            {
+                oneLabel.SetResourceReference(StyleProperty, "CustomKeyboardElementCharOnFocusLabel");
+            }
+        }
+
+        public void SetDefaultStyle()
+        {
+            KeyboardBorder.SetResourceReference(StyleProperty, "CustomKeyboardElementBorder");
+            var labelsContainer = KeyboardCanvas.Children.OfType<Label>();
+            foreach (var oneLabel in labelsContainer)
+            {
+                oneLabel.SetResourceReference(StyleProperty, "CustomKeyboardElementCharLabel");
+            }
+        }
+
+        public void SetMisclickStyle()
+        {
+            KeyboardBorder.SetResourceReference(StyleProperty, "CustomKeyboardElementMisclickBorder");
+        }
     }
 }

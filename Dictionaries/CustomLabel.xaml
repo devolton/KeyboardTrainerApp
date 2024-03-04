@@ -28,5 +28,20 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style x:Key="CustomKeyboardElementCharOnFocusLabel" TargetType="Label">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontWeight" Value="ExtraBold"/>
+        <Setter Property="FontFamily" Value="Verdana"/>
+        <Setter Property="FontSize" Value="20px"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="1"
+                       Color="Black"
+                       Opacity="0.3"
+                       Direction="50"/>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
 
 </ResourceDictionary>
